@@ -14,7 +14,7 @@ class __HomePageState extends State<HomePage> {
   final double horizontalPadding = 30;
   final double verticalPadding = 30;
 
-  // int _currentIndex = 0;
+  int _currentIndex = 0;
   // final List<Widget> _children = [
   //   HomePage(),
   //   ScannerPage(),
@@ -30,7 +30,7 @@ class __HomePageState extends State<HomePage> {
       // body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         // onTap: onTappedBar,
-        // currentIndex: _currentIndex,
+        currentIndex: _currentIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -143,10 +143,10 @@ class __HomePageState extends State<HomePage> {
                             width: 100,
                           ),
                           const SizedBox(height: 6),
-                          const Text(
-                            'Data Record',
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                          ),
+                          // const Text(
+                          //   'Data Record',
+                          //   style: TextStyle(fontSize: 20, color: Colors.black),
+                          // ),
                           const SizedBox(height: 6),
                         ],
                       ),

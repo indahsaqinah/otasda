@@ -30,6 +30,7 @@ dependencies:
   google_fonts:
   image_picker: ^0.8.6
   flutter_tesseract_ocr: ^0.4.20
+  flutter_mobile_vision: ^0.1.4+1
 
 dev_dependencies:
   flutter_test:

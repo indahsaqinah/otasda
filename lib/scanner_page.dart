@@ -1,113 +1,63 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'home_page.dart';
+import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 
 class ScannerPage extends StatefulWidget {
-  const ScannerPage({Key? key}) : super(key: key);
-
-  State<ScannerPage> createState() => _ScannerPageState();
+  @override
+  _ScannerPageState createState() => _ScannerPageState();
 }
 
 class _ScannerPageState extends State<ScannerPage> {
-  String dropdownvalue = 'OLT';
-
-  // List of items in our dropdown menu
-  var items = [
-    'OLT',
-    'FDC',
-    'FDP',
-    'Customer side',
-  ];
-
+  int _ocrCamera = FlutterMobileVision.CAMERA_BACK;
+  String _text = "TEXT";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        // onTap: onTappedBar,
-        // currentIndex: _currentIndex,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_a_photo_rounded),
-            label: 'Scan',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.article),
-            label: 'Data Record',
-          ),
-        ],
-      ),
-      backgroundColor: Colors.grey[300],
-      body: Row(children: [
-        SafeArea(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white70,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text('OCR In Flutter'),
+          centerTitle: true,
+        ),
+        body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Location:",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
-                  ),
-              DropdownButton(
-                // Initial Value
-                value: dropdownvalue,
-
-                // Down Arrow Icon
-                icon: const Icon(Icons.keyboard_arrow_down),
-
-                // Array list of items
-                items: items.map((String items) {
-                  return DropdownMenuItem(
-                    value: items,
-                    child: Text(items),
-                  );
-                }).toList(),
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownvalue = newValue!;
-                  });
-                },
+              Text(
+                _text,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 40),
               Center(
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[500], // Background color
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12), // <-- Radius
-                        ),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Center(
-                            child: Text(
-                          'Camera',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        )),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomePage()),
-                        );
-                      },
-                    )),
+                child: ElevatedButton(
+                  onPressed: _read,
+                  child: Text(
+                    'Scanning',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
               ),
-              const SizedBox(height: 10),
             ],
           ),
         ),
-      ]),
+      ),
     );
+  }
+
+  Future<Null> _read() async {
+    List<OcrText> texts = [];
+    try {
+      texts = await FlutterMobileVision.read(
+        camera: _ocrCamera,
+        waitTap: true,
+      );
+      setState(() {
+        _text = texts[0].value;
+      });
+    } on Exception {
+      texts.add(OcrText('Failed to recognize text'));
+    }
   }
 }

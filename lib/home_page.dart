@@ -15,21 +15,30 @@ class __HomePageState extends State<HomePage> {
   final double verticalPadding = 30;
 
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    HomePage(),
-    ScannerPage(),
-    DataPage(),
-  ];
+
+  List<Widget> children = [];
 
   void onTappedBar(int index) {
     setState(() {
       _currentIndex = index;
     });
+    if (index == 0) {
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ScannerPage()),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DataPage()),
+      );
+    }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: _children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           onTap: onTappedBar,
           currentIndex: _currentIndex,
@@ -50,109 +59,110 @@ class __HomePageState extends State<HomePage> {
           type: BottomNavigationBarType.fixed,
         ),
         backgroundColor: Colors.grey[300],
-        // body: SafeArea(
-        //     child: Column(
-        //   children: [
-        //     Row(
-        //       children: [
-        //         Padding(
-        //           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-        //           child: Column(
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: [
-        //               Text(
-        //                 "Welcome,",
-        //                 style: TextStyle(fontSize: 18),
-        //               ),
-        //               Text(
-        //                 "USER.",
-        //                 style: TextStyle(fontSize: 40),
-        //               ),
-        //             ],
-        //           ),
-        //         )
-        //       ],
-        //     ),
-        //     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        //       Center(
-        //         child: Material(
-        //           color: Colors.grey[300],
-        //           elevation: 8,
-        //           borderRadius: BorderRadius.circular(10),
-        //           clipBehavior: Clip.antiAliasWithSaveLayer,
-        //           child: InkWell(
-        //             splashColor: Colors.black26,
-        //             onTap: () {
-        //               Navigator.push(
-        //                 context,
-        //                 MaterialPageRoute(
-        //                     builder: (context) => const ScannerPage()),
-        //               );
-        //             },
-        //             child: Column(
-        //               mainAxisAlignment: MainAxisAlignment.center,
-        //               crossAxisAlignment: CrossAxisAlignment.center,
-        //               // mainAxisSize: MainAxisSize.min,
-        //               children: [
-        //                 Ink.image(
-        //                   image: const AssetImage(
-        //                       'assets/images/digital-camera.png'),
-        //                   height: 100,
-        //                   width: 100,
-        //                 ),
-        //                 const SizedBox(height: 6),
-        //                 const Text(
-        //                   'Scan',
-        //                   style: TextStyle(fontSize: 20, color: Colors.black),
-        //                 ),
-        //                 const SizedBox(height: 6),
-        //               ],
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ]),
-        //     Padding(
-        //       padding: const EdgeInsets.all(50.0),
-        //       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        //         Center(
-        //           child: Material(
-        //             color: Colors.grey[300],
-        //             elevation: 8,
-        //             borderRadius: BorderRadius.circular(10),
-        //             clipBehavior: Clip.antiAliasWithSaveLayer,
-        //             child: InkWell(
-        //               splashColor: Colors.black26,
-        //               onTap: () {
-        //                 Navigator.push(
-        //                   context,
-        //                   MaterialPageRoute(
-        //                       builder: (context) => const DataPage()),
-        //                 );
-        //               },
-        //               child: Column(
-        //                 mainAxisSize: MainAxisSize.min,
-        //                 children: [
-        //                   Ink.image(
-        //                     image: const AssetImage('assets/images/table.png'),
-        //                     height: 100,
-        //                     width: 100,
-        //                   ),
-        //                   const SizedBox(height: 6),
-        //                   const Text(
-        //                     'Data Record',
-        //                     style: TextStyle(fontSize: 20, color: Colors.black),
-        //                   ),
-        //                   const SizedBox(height: 6),
-        //                 ],
-        //               ),
-        //             ),
-        //           ),
-        //         ),
-        //       ]),
-        //     )
-        //   ],
-        // ))
-      );
+        body: SafeArea(
+            child: Column(
+          children: [
+            const SizedBox(height: 50),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Welcome,",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        "USER.",
+                        style: TextStyle(fontSize: 40),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 80),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Center(
+                child: Material(
+                  color: Colors.grey[300],
+                  elevation: 8,
+                  borderRadius: BorderRadius.circular(10),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: InkWell(
+                    splashColor: Colors.black26,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ScannerPage()),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Ink.image(
+                          image: const AssetImage(
+                              'assets/images/digital-camera.png'),
+                          height: 100,
+                          width: 100,
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Scan',
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                        ),
+                        const SizedBox(height: 6),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ]),
+            Padding(
+              padding: const EdgeInsets.all(60.0),
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Center(
+                  child: Material(
+                    color: Colors.grey[300],
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(10),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: InkWell(
+                      splashColor: Colors.black26,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DataPage()),
+                        );
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Ink.image(
+                            image: const AssetImage('assets/images/table.png'),
+                            height: 100,
+                            width: 100,
+                          ),
+                          const SizedBox(height: 6),
+                          const Text(
+                            'Data Record',
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                          const SizedBox(height: 6),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
+            )
+          ],
+        )));
   }
 }

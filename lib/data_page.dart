@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:otasda/scanner_page.dart';
+import 'package:otasda/home_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -9,15 +11,33 @@ class DataPage extends StatefulWidget {
 }
 
 class _DataPageState extends State<DataPage> {
+  int _currentIndex = 2;
 
-  // final DataPage _data = MyData();
+  List<Widget> children = [];
+
+  void onTappedBar(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ScannerPage()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        // onTap: onTappedBar,
-        // currentIndex: _currentIndex,
+        onTap: onTappedBar,
+        currentIndex: _currentIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -38,16 +58,16 @@ class _DataPageState extends State<DataPage> {
       // body: Column(
       //   children: [
       //     // PaginatedDataTable(
-      //       // source: _data, 
+      //       // source: _data,
       //       // columns: const [
-              
+
       //       ],
       //       )
-        // ]
-      );
+      // ]
+    );
     // );
-  // }
-}
+    // }
+  }
 
 // class MyData extends DataPage {
 //   final List<Map<String, dynamic>> _data = List.generate(

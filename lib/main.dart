@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:otasda/home_page.dart';
+import 'package:otasda/scanner_page.dart';
 import 'login_page.dart';
 
 void main() {

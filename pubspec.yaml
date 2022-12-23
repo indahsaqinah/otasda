@@ -30,9 +30,13 @@ dependencies:
   google_fonts:
   image_picker: ^0.8.6
   flutter_tesseract_ocr: ^0.4.20
+<<<<<<< HEAD
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.1
 
+=======
+  flutter_mobile_vision: ^0.1.4+1
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
 
 dev_dependencies:
   flutter_test:

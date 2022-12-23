@@ -1,16 +1,22 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:otasda/data_page.dart';
 import 'package:otasda/home_page.dart';
 
 import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
+=======
+import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
 
 class ScannerPage extends StatefulWidget {
-  const ScannerPage({Key? key}) : super(key: key);
-
-  State<ScannerPage> createState() => _ScannerPageState();
+  @override
+  _ScannerPageState createState() => _ScannerPageState();
 }
 
 class _ScannerPageState extends State<ScannerPage> {
+<<<<<<< HEAD
   String dropdownvalue = 'OLT';
 
   // List of items in our dropdo[mkl,,,,g4+swn menu
@@ -214,5 +220,57 @@ class _ScannerPageState extends State<ScannerPage> {
             ],
           ),
         ));
+=======
+  int _ocrCamera = FlutterMobileVision.CAMERA_BACK;
+  String _text = "TEXT";
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white70,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text('OCR In Flutter'),
+          centerTitle: true,
+        ),
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                _text,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: _read,
+                  child: Text(
+                    'Scanning',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
+  }
+
+  Future<Null> _read() async {
+    List<OcrText> texts = [];
+    try {
+      texts = await FlutterMobileVision.read(
+        camera: _ocrCamera,
+        waitTap: true,
+      );
+      setState(() {
+        _text = texts[0].value;
+      });
+    } on Exception {
+      texts.add(OcrText('Failed to recognize text'));
+    }
   }
 }

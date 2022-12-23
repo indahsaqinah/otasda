@@ -3,6 +3,8 @@ import 'package:otasda/scanner_page.dart';
 import 'package:otasda/home_page.dart';
 
 import 'package:flutter/material.dart';
+import 'package:otasda/home_page.dart';
+import 'package:otasda/scanner_page.dart';
 
 class DataPage extends StatefulWidget {
   const DataPage({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class DataPage extends StatefulWidget {
 }
 
 class _DataPageState extends State<DataPage> {
+<<<<<<< HEAD
   int _currentIndex = 2;
 
   List<Widget> children = [];
@@ -29,6 +32,30 @@ class _DataPageState extends State<DataPage> {
         context,
         MaterialPageRoute(builder: (context) => const ScannerPage()),
       );
+    }
+  }
+=======
+  // final DataPage _data = MyData();
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
+
+  int _currentIndex = 2;
+
+  void onTappedBar(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  ScannerPage()),
+      );
+    } else {
+      const DataPage();
     }
   }
 

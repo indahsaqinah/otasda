@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:otasda/login_page.dart';
 import 'package:otasda/scanner_page.dart';
 import 'package:otasda/data_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  State<HomePage> createState() => __HomePageState();
+  @override
+  State<HomePage> createState() => _HomePageState();
 }
 
-class __HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   //padding constants
   final double horizontalPadding = 30;
   final double verticalPadding = 30;
@@ -23,6 +23,7 @@ class __HomePageState extends State<HomePage> {
       _currentIndex = index;
     });
     if (index == 0) {
+<<<<<<< HEAD
     } else if (index == 1) {
       Navigator.push(
         context,
@@ -33,6 +34,19 @@ class __HomePageState extends State<HomePage> {
         context,
         MaterialPageRoute(builder: (context) => DataPage()),
       );
+=======
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  ScannerPage()),
+      );
+    } else {
+      const DataPage();
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
     }
   }
 
@@ -62,14 +76,21 @@ class __HomePageState extends State<HomePage> {
         body: SafeArea(
             child: Column(
           children: [
+<<<<<<< HEAD
             const SizedBox(height: 50),
+=======
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
             Row(
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+<<<<<<< HEAD
                     children: [
+=======
+                    children: const [
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
                       Text(
                         "Welcome,",
                         style: TextStyle(fontSize: 18),
@@ -83,7 +104,10 @@ class __HomePageState extends State<HomePage> {
                 )
               ],
             ),
+<<<<<<< HEAD
             const SizedBox(height: 80),
+=======
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Center(
                 child: Material(
@@ -97,12 +121,20 @@ class __HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+<<<<<<< HEAD
                             builder: (context) => const ScannerPage()),
+=======
+                            builder: (context) =>  ScannerPage()),
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
                       );
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
+<<<<<<< HEAD
+=======
+                      // mainAxisSize: MainAxisSize.min,
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
                       children: [
                         Ink.image(
                           image: const AssetImage(
@@ -123,7 +155,11 @@ class __HomePageState extends State<HomePage> {
               ),
             ]),
             Padding(
+<<<<<<< HEAD
               padding: const EdgeInsets.all(60.0),
+=======
+              padding: const EdgeInsets.all(50.0),
+>>>>>>> c7671eab36ee5d1fefb0f6e991c48e14a121417b
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Center(
